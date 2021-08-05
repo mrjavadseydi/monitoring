@@ -1,0 +1,38 @@
+@font-face {
+    font-family: vazir;
+    src: url('../font/Vazir-Medium.eot');
+    src: url('../font/Vazir-Medium.eot') format('FontName-opentype'),
+    url('../font/Vazir-Medium.woff2') format('woff'),
+    url('../font/Vazir-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    direction: rtl;
+    font-family: vazir;
+    text-align: right !important;
+}
+
+#menu{
+    list-style-type: none;
+    padding: 0;
+
+}
+#menu>a>li{
+    top:  -2px;
+    padding-bottom: 3px;
+    margin-bottom: 8px;
+    border-top: 10px solid #0091ea;
+
+    cursor: pointer;
+
+}
+#menu>a>li>i{
+    background: #0091ea;
+    padding: 6px;
+    margin-left: 10px;
+    color: white;
+    font-size: 29px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

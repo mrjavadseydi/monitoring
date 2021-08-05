@@ -1,0 +1,194 @@
+# Webalizer V2.23-08 Incremental Data - 08/03/2021 11:15:15
+2021 8 3 11 15 15
+32 28 3 27 4 3 1167602 4 3 0
+1 27 27 2 3
+0 0 0 0 0 0
+5 1 20095 2 3 2
+27 27 1147507 1 1 1
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+1 1 16799 1
+0 0 0 0
+27 27 1147507 1
+4 0 3296 2
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0
+0
+0
+28
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+2
+2
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+# -urls- 
+/indexAsset/css/fontawesome-all.css
+0 1 0 9803 0 0
+/indexAsset/images/693.jpg
+0 1 0 587700 0 0
+/indexAsset/css/magnific-popup.css
+0 1 0 2186 0 0
+/indexAsset/js/popper.min.js
+0 1 0 7846 0 0
+/indexAsset/images/header-teamwork.svg
+0 1 0 21649 0 0
+/indexAsset/css/bootstrap.css
+0 1 0 25812 0 0
+/indexAsset/images/testimonials-2-men-talking.svg
+0 1 0 5373 0 0
+/indexAsset/css/swiper.css
+0 1 0 3678 0 0
+/indexAsset/css/styles.css
+0 1 0 8090 0 0
+/indexAsset/js/jquery.easing.min.js
+0 1 0 2271 0 0
+/indexAsset/css/font/IRANSansWeb.woff2
+0 1 0 30149 0 0
+/indexAsset/js/jquery.magnific-popup.js
+0 1 0 7803 0 0
+/indexAsset/images/header-background.jpg
+0 1 0 105629 0 0
+/loginAsset/images/icons/favicon.ico
+0 1 0 32370 0 0
+/indexAsset/js/scripts.js
+0 1 0 2961 0 0
+/indexAsset/images/logo.png
+0 1 0 6917 0 0
+/indexAsset/js/jquery.min.js
+0 1 0 30743 0 0
+/indexAsset/js/swiper.min.js
+0 1 0 33218 0 0
+/indexAsset/images/services-icon-1.svg
+0 1 0 2052 0 0
+/indexAsset/webfonts/fa-solid-900.woff2
+0 1 0 50698 0 0
+/indexAsset/images/services-icon-3.svg
+0 1 0 1975 0 0
+/indexAsset/js/validator.min.js
+0 1 0 3569 0 0
+/indexAsset/css/font/Aviny.woff2
+0 1 0 73226 0 0
+/indexAsset/images/testimonials-background.jpg
+0 1 0 69734 0 0
+/
+0 2 0 21639 3 0
+/indexAsset/js/bootstrap.min.js
+0 1 0 15825 0 0
+/indexAsset/images/services-icon-2.svg
+0 1 0 1390 0 0
+# End Of Table - urls
+# -sites- (monthly)
+90.120.23.89
+0 4 0 3296 1 1627906478
+/
+3.232.55.211
+0 1 1 16799 1 1627896896
+/
+192.168.200.70
+0 27 27 1147507 1 1627989312
+/
+# End Of Table - sites (monthly)
+# -sites- (daily)
+192.168.200.70
+0 27 27 1147507 1 1627989312
+/
+# End Of Table - sites (daily)
+# -referrers- 
+http://monitoring.birjand.ac.ir/indexAsset/css/fontawesome-all.css
+0 1
+http://monitoring.birjand.ac.ir/indexAsset/css/styles.css
+0 4
+- (Direct Request)
+0 6
+http://monitoring.birjand.ac.ir/
+0 21
+# End Of Table - referrers
+# -agents- 
+Mozilla/5.0 (Windows NT 6.1; rv:90.0) Gecko/20100101 Firefox/90.0
+0 27
+Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36
+0 4
+\"Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27\"
+0 1
+# End Of Table - agents
+# -search strings- 
+# End Of Table - search strings
+# -usernames- 
+# End Of Table - usernames
