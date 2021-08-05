@@ -1,31 +1,20 @@
 <?php
 
 namespace App\Http\Controllers\Panel;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FileRequest;
 use App\Http\Requests\uploadInformationRequest;
-use App\Models\Actions;
-use App\Models\Category;
-use App\Models\Goals;
-use App\Http\Requests\goalRequest;
 use App\Models\Plan;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\UserCategory;
-
 use App\Models\UserRole;
 use App\Uploads;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Hatamiarash7\JDF\Generator;
-
+use Morilog\Jalali\Jalalian;
 class panelController extends Controller {
 
     public function panel() {
-        $jdf = new Generator();
-        $ex = explode('/',$jdf->getDate());
-        $now = $this->convertPersianToEnglish($ex[0]);
+
+        $now = Jalalian::forge('today')->format('%Y');
         $d=Plan::all();
         foreach ($d as $r){
             $r->update([
