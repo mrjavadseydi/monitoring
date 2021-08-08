@@ -52,15 +52,14 @@
             <tr>
                 <th>ردیف</th>
                 <th>نام</th>
-
                 <th>بیشتر</th>
             </tr>
             </thead>
             <tbody>
 
-            @foreach($data as $i=> $d)
+            @foreach($data as  $d)
                 <tr>
-                    <td style="width: 5%">{{$i}}</td>
+                    <td style="width: 5%">{{$loop->iteration}}</td>
                     <td style="width: 55%">{{$d['title']}}</td>
                     <td style="width:10%">
                         <a class="edit" data-toggle="tooltip" data-placement="top"  title="ویرایش" href="{{route('problemType.edit',$d['id'])}}"><i style="font-size: 20px" class="fa fa-edit"></i></a>

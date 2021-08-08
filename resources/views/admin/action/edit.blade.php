@@ -10,7 +10,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="{{ route('panel') }}">خانه</a></li>
-                        <li class="breadcrumb-item active">ویرایش اقدام </li>
+                        <li class="breadcrumb-item active">ویرایش اقدام</li>
                     </ol>
                 </div><!-- /.col -->
             </div>
@@ -178,23 +178,74 @@
                     </div>
                 </div>
                 <br>
-                <div class="col-12 text-ar" @if($data['done']==0)
-                style="display: none"
-                @endif
-                >
-                    <label for="description">موانع </label>
-                    <textarea id="some-textarea1" DIR="RTL" class="col-md-12 form-control" name="obst"
-                              placeholder="این بخش اختیاری میباشد " style="">{{$data['obst']}}</textarea>
-                </div>
 
-                <div>
-                    <button style="float:left"
-                            class="btn btn-success my-4 btn-block col-md-2 col-sm-2 text-center text-white"
-                            type="submit">
-                        ویرایش
-                    </button>
-                </div>
-                <br>
+                <div class="col-12 text-ar" @if($data['done']==0)
+                style="display: none" @endif >
+                    <label for="description">موانع </label>
+
+                    <div id="clone"></div>
+                    <div class="d-none">
+                        <div id="original">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="description"> عنوان </label>
+                                    <input type="text" name="problemTitle[]" class="form-control"
+                                           placeholder="عنوان مانع">
+                                </div>
+                                <div class="col-md-3">
+
+                                    <div class="form-group " style="">
+                                        <label>نوع مانع </label>
+                                        <select class="js-example-basic-single form-control col-md-12  col-sm-12"
+                                                name="probleType[]">
+                                            @foreach(\App\Models\ProblemType::all() as $c)
+                                                <option
+                                                    value="{{$c['id']}}">{{$c['title']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+
+                                    <div class="form-group " style="">
+                                        <label>وزن</label>
+                                        <select class="js-example-basic-single form-control col-md-12  col-sm-12"
+                                                name="problemWeight[]">
+                                            @for($level =0 ;$level<11 ; $level++)
+                                                <option
+                                                    value="{{$level}}">{{$level}}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <br>
+                                    <br>
+                                    <label>
+                                        این مانع در عدم تحقق اقدام نقش دارد ؟
+                                    </label>
+
+                                    <input type="checkbox" name="problemEffective[]">
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <button type="button" class="btn btn-outline-info add-problem">افزودن مانع</button>
+
+
+                    <div>
+                        <button style="float:left"
+                                class="btn btn-success my-4 btn-block col-md-2 col-sm-2 text-center text-white"
+                                type="submit">
+                            ویرایش
+                        </button>
+                    </div>
+                    <br>
 
             </form>
             <br>
@@ -231,7 +282,7 @@
         <br>
         <br>
         @if(!empty($files))
-            <p>مستندات ارسال شده  :</p>
+            <p>مستندات ارسال شده :</p>
         @endif
         <div>
             @php($j=1)
@@ -245,18 +296,19 @@
                 </TR>
                 </thead>
                 <tbody>
-            @foreach($files as $f)
+                @foreach($files as $f)
 
                     <tr>
                         <td>{{$j++}}</td>
                         <td>{{$f['name']}}</td>
-                        <td><a href="{{asset($f['path'])}}" target="_blank">کلیک کنید !</a> </td>
-                        <td>  <a data-toggle="tooltip" data-placement="top" title="حذف این مورد !" href="#"
-                                 style="color: red;" class="trashbtn" data-id="{{$f['id']}}"><i style="font-size: 20px"
-                                                                                                class="fa fa-trash"></i></a></td>
+                        <td><a href="{{asset($f['path'])}}" target="_blank">کلیک کنید !</a></td>
+                        <td><a data-toggle="tooltip" data-placement="top" title="حذف این مورد !" href="#"
+                               style="color: red;" class="trashbtn" data-id="{{$f['id']}}"><i style="font-size: 20px"
+                                                                                              class="fa fa-trash"></i></a>
+                        </td>
                     </tr>
 
-            @endforeach
+                @endforeach
                 </tbody>
 
             </table>
@@ -288,23 +340,23 @@
         @endsection
         @section('script')
 
-                <script src="{{asset('plugins/ckeditor/ckeditor.js')}}"></script>
-                <script>
-                    ClassicEditor.create(document.querySelector('#some-textarea'))
-                        .then(function (editor) {
-                            // The editor instance
-                        })
-                        .catch(function (error) {
-                            console.error(error)
-                        })
-                    ClassicEditor.create(document.querySelector('#some-textarea1'))
-                        .then(function (editor) {
-                            // The editor instance
-                        })
-                        .catch(function (error) {
-                            console.error(error)
-                        })
-                </script>
+            <script src="{{asset('plugins/ckeditor/ckeditor.js')}}"></script>
+            <script>
+                ClassicEditor.create(document.querySelector('#some-textarea'))
+                    .then(function (editor) {
+                        // The editor instance
+                    })
+                    .catch(function (error) {
+                        console.error(error)
+                    })
+                ClassicEditor.create(document.querySelector('#some-textarea1'))
+                    .then(function (editor) {
+                        // The editor instance
+                    })
+                    .catch(function (error) {
+                        console.error(error)
+                    })
+            </script>
             <script>
 
 
@@ -320,6 +372,10 @@
                     $(".add").click(function () {
                         var lsthmtl = $(".rem1").html();
                         $(".next").after(lsthmtl);
+                    });
+                    $(".add-problem").click(function () {
+                        var lsthmtl = $("#original").html();
+                        $("#clone").after(lsthmtl);
                     });
                     $("body").on("click", ".remove", function () {
                         $(this).parents(".rem1").remove();
