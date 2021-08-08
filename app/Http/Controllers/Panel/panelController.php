@@ -6,14 +6,13 @@ use App\Http\Requests\FileRequest;
 use App\Http\Requests\uploadInformationRequest;
 use App\Models\Plan;
 use App\Models\Role;
-use App\Models\User;
+use App\User;
 use App\Models\UserRole;
 use App\Uploads;
 use Morilog\Jalali\Jalalian;
 class panelController extends Controller {
 
     public function panel() {
-
         $now = Jalalian::forge('today')->format('%Y');
         $d=Plan::all();
         foreach ($d as $r){

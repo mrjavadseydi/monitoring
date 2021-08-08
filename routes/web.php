@@ -28,12 +28,13 @@ Route::prefix('AdminPanel')->middleware(['admin', 'auth'])->namespace('Panel')->
     Route::resource('goal', 'GoalController');
     Route::resource('action', 'ActionController');
     Route::resource('submit', 'SubmitController');
-
+    Route::resource('problemType', 'ProblemTypeController');
     ///delete with ajax //
     Route::post('goal/delete', 'GoalController@delete')->name('goal.delete');
     Route::post('strategy/delete', 'StrategyController@delete')->name('strategy.delete');
     Route::post('category/delete', 'CategoryController@delete')->name('category.delete');
-    Route::post('program/delete', 'ProgramController@delete')->name('program.delete');
+    Route::post('program/delete', 'Pr
+    ogramController@delete')->name('program.delete');
     Route::post('action/delete', 'ActionController@delete')->name('action.delete');
     Route::post('user/delete', 'UserController@delete')->name('user.delete');
     Route::post('upload/delete', 'panelController@delete')->name('upload.delete');

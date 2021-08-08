@@ -443,6 +443,12 @@
                                 <p>کاربران</p>
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a href="{{route('problemType.index')}}" class="nav-link">
+                                    <i class="nav-icon fa fa-gittip"></i>
+                                    <p>نوع موانع </p>
+                                </a>
+                            </li>
                         @endif
 
                     </ul>
