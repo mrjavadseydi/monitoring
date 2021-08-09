@@ -117,6 +117,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/graham-campbell/result-type" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/beberlei/assert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/morilog/jalali" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/imanghafoori/laravel-microscope" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/imanghafoori/php-search-replace" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/imanghafoori/php-token-analyzer" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

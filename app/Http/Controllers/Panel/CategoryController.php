@@ -32,7 +32,14 @@ class CategoryController extends Controller
     public function index()
     {
         $data = Category::all();
-        if(session('level')==1){
+        if(session('level')!=1){
+        $program = $this->program;
+        $stra = $this->stra;
+        $act = $this->act;
+        $dact = $this->dact;
+        $percent = $this->percent;
+        return view('admin/category/categorylist',compact('data','program','stra','act','dact','percent'));
+    }
             foreach ($data as $d){
                 $pro =  Programs::where('category',$d['code']);
                 array_push($this->program,$pro->count());
@@ -57,7 +64,7 @@ class CategoryController extends Controller
 
                 array_push($this->percent,$done);
             }
-        }
+        
         $program = $this->program;
         $stra = $this->stra;
         $act = $this->act;

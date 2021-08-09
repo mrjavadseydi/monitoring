@@ -113,6 +113,9 @@
       <path value="$PROJECT_DIR$/vendor/graham-campbell/result-type" />
       <path value="$PROJECT_DIR$/vendor/beberlei/assert" />
       <path value="$PROJECT_DIR$/vendor/morilog/jalali" />
+      <path value="$PROJECT_DIR$/vendor/imanghafoori/laravel-microscope" />
+      <path value="$PROJECT_DIR$/vendor/imanghafoori/php-search-replace" />
+      <path value="$PROJECT_DIR$/vendor/imanghafoori/php-token-analyzer" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />

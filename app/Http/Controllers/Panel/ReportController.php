@@ -27,7 +27,15 @@ class ReportController extends Controller
             $plan_id = 1;
         }
         $data = Category::all();
-        if(session('level')==1){
+        if(session('level')!=1){
+        $program = $this->program;
+        $stra = $this->stra;
+        $act = $this->act;
+        $dact = $this->dact;
+        $percent = $this->percent;
+
+        return view('admin.report.index2',compact('data','program','stra','act','dact','percent'));
+    }
             foreach ($data as $d){
                 $pro = Programs::where([['category','=',$d['code']],['plan_id','=',$plan_id]]);
                 array_push($this->program,$pro->count());
@@ -52,7 +60,7 @@ class ReportController extends Controller
 
                 array_push($this->percent,$done);
             }
-        }
+        
         $program = $this->program;
         $stra = $this->stra;
         $act = $this->act;

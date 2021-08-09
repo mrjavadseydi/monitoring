@@ -47,7 +47,8 @@ class StrategyController extends Controller {
             $per=0;
             $n = Category::where('id', $d['category_id'])->first();
             array_push($arr, $n['name']);
-            if (session('level') == 1) {
+            if (session('level') != 1){
+        continue;} 
                 $pro = Programs::where('strategy', $d['code'] . $d['row']);
                 array_push($this->program, $pro->count());
                 foreach ($pro->get() as $g) {
@@ -104,7 +105,7 @@ class StrategyController extends Controller {
                 else
                     $per = ($e * 100) / $a;
                 array_push($this->percent, $per);
-            }
+            
         }
         $program= $this->program;
         $act1 = $this->act;

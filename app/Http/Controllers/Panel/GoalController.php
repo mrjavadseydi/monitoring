@@ -29,10 +29,9 @@ class GoalController extends Controller
     public function search($goal)
     {
         $input = Input::get();
-        if($input){
-            if($input['user']){
+        if($input && $input['user']){
                 $goal = $goal->where('user_id', $input['user_id']);
-            }
+            
         }
         return $goal;
     }
