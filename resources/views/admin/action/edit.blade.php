@@ -182,58 +182,61 @@
                 <div class="col-12 text-ar" @if($data['done']==0)
                 style="display: none" @endif >
                     <label for="description">موانع </label>
+                    @foreach($problems as $problem)
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="description"> عنوان </label>
+                                <input type="text" name="problemTitle[]" value="{{$problem->title}}"
+                                       class="form-control"
+                                       placeholder="عنوان مانع">
+                            </div>
+                            <div class="col-md-3">
 
-                    <div id="clone"></div>
-                    <div class="d-none">
-                        <div id="original">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="description"> عنوان </label>
-                                    <input type="text" name="problemTitle[]" class="form-control"
-                                           placeholder="عنوان مانع">
+                                <div class="form-group " style="">
+                                    <label>نوع مانع </label>
+                                    <select class=" form-control col-md-12  col-sm-12"
+                                            name="probleType[]">
+                                        @foreach(\App\Models\ProblemType::all() as $c)
+                                            <option
+                                                value="{{$c['id']}}" {{$c['id']==$problem->problem_type ?"selected":null}} >{{$c['title']}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="col-md-3">
+                            </div>
+                            <div class="col-md-2">
 
-                                    <div class="form-group " style="">
-                                        <label>نوع مانع </label>
-                                        <select class="js-example-basic-single form-control col-md-12  col-sm-12"
-                                                name="probleType[]">
-                                            @foreach(\App\Models\ProblemType::all() as $c)
-                                                <option
-                                                    value="{{$c['id']}}">{{$c['title']}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                <div class="form-group " style="">
+                                    <label>وزن</label>
+                                    <select class=" form-control col-md-12  col-sm-12"
+                                            name="problemWeight[]">
+                                        @for($level =0 ;$level<11 ; $level++)
+                                            <option
+                                                value="{{$level}}" {{$level==$problem->weight ?"selected":null}}>{{$level}}</option>
+                                        @endfor
+                                    </select>
                                 </div>
-                                <div class="col-md-2">
+                            </div>
+                            <div class="col-md-3">
+                                <label>
+                                    این مانع در عدم تحقق اقدام نقش دارد ؟
+                                </label>
+                                <br>
+                                <label>
+                                    بله
+                                </label>
+                                <input type="radio" name="problemEffective[]"  {{$problem->effective==true ?"checked":""}} value="1" >
 
-                                    <div class="form-group " style="">
-                                        <label>وزن</label>
-                                        <select class="js-example-basic-single form-control col-md-12  col-sm-12"
-                                                name="problemWeight[]">
-                                            @for($level =0 ;$level<11 ; $level++)
-                                                <option
-                                                    value="{{$level}}">{{$level}}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <br>
-                                    <br>
-                                    <label>
-                                        این مانع در عدم تحقق اقدام نقش دارد ؟
-                                    </label>
-
-                                    <input type="checkbox" name="problemEffective[]">
-                                </div>
+                                <label>
+                                    خیر
+                                </label>
+                                <input type="radio" name="problemEffective[]"  {{$problem->effective==false ?"checked":""}} value="0">
 
                             </div>
 
-
                         </div>
+                    @endforeach
+                    <div class="clone"></div>
 
-                    </div>
 
                     <button type="button" class="btn btn-outline-info add-problem">افزودن مانع</button>
 
@@ -246,8 +249,74 @@
                         </button>
                     </div>
                     <br>
-
+                </div>
             </form>
+            <div class="d-none">
+                <div class="original">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="description"> عنوان </label>
+                            <input type="text" name="problemTitle[]" class="form-control"
+                                   placeholder="عنوان مانع">
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="form-group " style="">
+                                <label>نوع مانع </label>
+                                <select class=" form-control col-md-12  col-sm-12"
+                                        name="probleType[]">
+                                    @foreach(\App\Models\ProblemType::all() as $c)
+                                        <option
+                                            value="{{$c['id']}}">{{$c['title']}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+
+                            <div class="form-group " style="">
+                                <label>وزن</label>
+                                <select class="form-control col-md-12  col-sm-12"
+                                        name="problemWeight[]">
+                                    @for($level =0 ;$level<11 ; $level++)
+                                        <option
+                                            value="{{$level}}">{{$level}}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                            <label>
+                                این مانع در عدم تحقق اقدام نقش دارد ؟
+                            </label>
+                            <br>
+                            <label>
+                                بله
+                            </label>
+                            <input type="radio" name="problemEffective[]" value="1" >
+
+                            <label>
+                                خیر
+                            </label>
+                            <input type="radio" name="problemEffective[]" checked value="0">
+                        </div>
+
+                        <div class="col-md-1 remove-problem ">
+                            <br>
+                            <button type="button" class="btn btn-outline-danger  ">حذف</button>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
             <br>
             <hr>
             <h5>مستندات:</h5>
@@ -374,8 +443,13 @@
                         $(".next").after(lsthmtl);
                     });
                     $(".add-problem").click(function () {
-                        var lsthmtl = $("#original").html();
-                        $("#clone").after(lsthmtl);
+                        var lsthmtl = $(".original").html();
+                        $(".clone").after(lsthmtl);
+                    });
+                    $("body").on("click", ".remove-problem", function () {
+
+                        $(this).parents(".row").remove();
+                        $(this).parents(".original").remove();
                     });
                     $("body").on("click", ".remove", function () {
                         $(this).parents(".rem1").remove();

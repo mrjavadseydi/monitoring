@@ -20,7 +20,7 @@ class CreateProblemsTable extends Migration
             $table->string('title');
             $table->boolean('effective')->default(false);
             $table->unsignedBigInteger('problem_type');
-            $table->foreign('problem_type')->references('id')->on('problems')->onDelete('Cascade');
+            $table->foreign('problem_type')->references('id')->on('problem_types')->onDelete('Cascade');
             $table->integer('weight');
             $table->timestamps();
         });

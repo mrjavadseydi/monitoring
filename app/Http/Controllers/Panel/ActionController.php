@@ -9,12 +9,14 @@ use App\Models\Actions;
 use App\Models\Category;
 use App\Models\Goals;
 use App\Models\Plan;
+use App\Models\Problem;
 use App\Models\Programs;
 use App\Models\UserCategory;
 use App\Uploads;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ActionController extends Controller {
 
@@ -152,7 +154,8 @@ class ActionController extends Controller {
         $category = Programs::all();
         $data = Actions::where('id', $id)->first();
         $files = Uploads::where('action_id', $id)->get();
-        return view('admin/action/edit', compact('category', 'data', 'files'));
+        $problems = Problem::where('actions_id',$id)->get();
+        return view('admin/action/edit', compact('category', 'data', 'files','problems'));
     }
 
     /**
@@ -197,7 +200,18 @@ class ActionController extends Controller {
         elseif (session('level') == 4) {
             $user = auth()->id();
         }
+        Problem::where('actions_id',$id)->delete();
+        foreach ($request->problemTitle as $i=> $problem){
 
+            Problem::create([
+                'actions_id'=>$id,
+                'title'=>$problem,
+                'effective'=>$request->problemEffective[$i],
+                'problem_type'=>$request->probleType[$i],
+                'weight'=>$request->problemWeight[$i]
+            ]);
+
+        }
         $act->update([
             'program_id'   => $request->program,
             'name'         => $request->title,
@@ -211,7 +225,7 @@ class ActionController extends Controller {
             'admin_id'     => $admin,
             'manager_id'   => $manager,
             'user_id'      => $user,
-            'obst'         => $request->obst . '',
+            'obst'         => '',
 
         ]);
         return back()->with('success', 'اقدام ویرایش شد !');
