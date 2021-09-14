@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="category">عنوان </label>
-                    <input type="text" name="title" class="form-control" placeholder="نام هدف : ارتقا ...">
+                    <input type="text" name="title" class="form-control" placeholder="نام مانع : ارتقا ...">
                 </div>
             </div>
             <br>
