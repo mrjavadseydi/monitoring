@@ -236,6 +236,8 @@ class ProgramController extends Controller
             "description" => $request->description . "",
             "rcancel" => $request->rcancel . "",
             "shortcut" => $request->shortcut . "",
+            "ideal" => $request->ideal . "",
+            "done" => $request->done . "",
         ]);
         return back()->with("success", "ویرایش برنامه با موفقیت انجام شد !");
     }
