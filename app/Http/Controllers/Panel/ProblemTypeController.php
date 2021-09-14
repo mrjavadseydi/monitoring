@@ -17,7 +17,7 @@ class ProblemTypeController extends Controller
     public function index()
     {
         $data = ProblemType::all();
-        return view('admin.probleType.index',compact('data'));
+        return view("admin.probleType.index", compact("data"));
     }
 
     /**
@@ -27,8 +27,7 @@ class ProblemTypeController extends Controller
      */
     public function create()
     {
-
-        return view('admin.probleType.create');
+        return view("admin.probleType.create");
     }
 
     /**
@@ -40,10 +39,13 @@ class ProblemTypeController extends Controller
     public function store(problemTypeRequest $request)
     {
         ProblemType::create([
-            'title'=>$request->title,
-            'description'=>$request->description
+            "title" => $request->title,
+            "description" => $request->description,
         ]);
-        return  redirect(route('problemType.index'))->with('success','با موفقیت افزوده شد !');
+        return redirect(route("problemType.index"))->with(
+            "success",
+            "با موفقیت افزوده شد !"
+        );
     }
 
     /**
@@ -66,7 +68,7 @@ class ProblemTypeController extends Controller
     public function edit($id)
     {
         $data = ProblemType::findOrFail($id);
-        return  view('admin.probleType.edit',compact('data'));
+        return view("admin.probleType.edit", compact("data"));
     }
 
     /**
@@ -76,15 +78,19 @@ class ProblemTypeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(problemTypeRequest $request,ProblemType $problemType)
-    {
+    public function update(
+        problemTypeRequest $request,
+        ProblemType $problemType
+    ) {
         $problemType->update([
-            'title'=>$request->title,
-            'description'=>$request->description
+            "title" => $request->title,
+            "description" => $request->description,
         ]);
 
-        return  redirect(route('problemType.index'))->with('success','با موفقیت ویرایش شد !');
-
+        return redirect(route("problemType.index"))->with(
+            "success",
+            "با موفقیت ویرایش شد !"
+        );
     }
 
     /**
@@ -95,7 +101,6 @@ class ProblemTypeController extends Controller
      */
     public function destroy($id)
     {
-
         ProblemType::whereId($id)->delete();
     }
 }

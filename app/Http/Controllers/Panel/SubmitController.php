@@ -13,10 +13,11 @@ use App\Models\UserCategory;
 use App\Uploads;
 use Illuminate\Http\Request;
 
-class SubmitController extends Controller {
-
-    public function __construct() {
-        $this->pro = '';
+class SubmitController extends Controller
+{
+    public function __construct()
+    {
+        $this->pro = "";
     }
 
     /**
@@ -25,23 +26,27 @@ class SubmitController extends Controller {
      * @return \Illuminate\Http\Response
      */
 
-    public function index() {
-        if (!empty(session('plan'))){
-            $plan_id=session('plan');
-        }else{
+    public function index()
+    {
+        if (!empty(session("plan"))) {
+            $plan_id = session("plan");
+        } else {
             $plan_id = 1;
         }
         $action = new Actions();
         $action = $this->only($action);
-        $data = $action->where([['plan_id', '=',$plan_id],['done','=',1]])->get();
+        $data = $action
+            ->where([["plan_id", "=", $plan_id], ["done", "=", 1]])
+            ->get();
         $programs = [];
         $pro = $this->pro;
         foreach ($data as $d) {
-            $n = Programs::findOrFail($d['program_id']);
-            $programid = $n['category'] . '-' . $n['strategy'] . '-' . $n['row'];
+            $n = Programs::findOrFail($d["program_id"]);
+            $programid =
+                $n["category"] . "-" . $n["strategy"] . "-" . $n["row"];
             array_push($programs, $programid);
         }
-        $p = Plan::where('id', $plan_id)->first();
+        $p = Plan::where("id", $plan_id)->first();
         $plan = [
             $p->now,
             $p->first + 0,
@@ -50,24 +55,36 @@ class SubmitController extends Controller {
             $p->first + 3,
             $p->first + 4,
         ];
-        return view('admin/submit/index', compact('data', 'programs', 'pro', 'plan'));
+        return view(
+            "admin/submit/index",
+            compact("data", "programs", "pro", "plan")
+        );
     }
 
-    public function only($action) {
-        if (session('level') > 1) {
+    public function only($action)
+    {
+        if (session("level") > 1) {
             $id = auth()->id();
-            $uc = UserCategory::where('UserId', $id)->first();
-            $action = $action->where('categories_id', $uc->categoryId);
+            $uc = UserCategory::where("UserId", $id)->first();
+            $action = $action->where("categories_id", $uc->categoryId);
         }
-        if (session('level')==2){
-        $action = $action->where([['user_id','!=',0],['manager_id','=',0],['admin_id','!=',0]]);
-        }elseif (session('level')==3){
-            $action = $action->where([['user_id','!=',0],['manager_id','=',0],['admin_id','=',0]]);
+        if (session("level") == 2) {
+            $action = $action->where([
+                ["user_id", "!=", 0],
+                ["manager_id", "=", 0],
+                ["admin_id", "!=", 0],
+            ]);
+        } elseif (session("level") == 3) {
+            $action = $action->where([
+                ["user_id", "!=", 0],
+                ["manager_id", "=", 0],
+                ["admin_id", "=", 0],
+            ]);
         }
-        $input = request('only');
+        $input = request("only");
         if (Programs::find($input)) {
-            $this->pro = Programs::where('id', $input)->first();
-            $action = $action->where('program_id', $input);
+            $this->pro = Programs::where("id", $input)->first();
+            $action = $action->where("program_id", $input);
         }
         return $action;
     }
@@ -77,15 +94,14 @@ class SubmitController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         if (!isset(request()->program)) {
             $category = Programs::all();
+        } else {
+            $category = Programs::where("id", request()->program)->first();
         }
-        else {
-            $category = Programs::where('id', request()->program)->first();
-        }
-        return view('admin/action/create', compact('category'));
-
+        return view("admin/action/create", compact("category"));
     }
 
     /**
@@ -94,35 +110,33 @@ class SubmitController extends Controller {
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ActionRequest $request) {
+    public function store(ActionRequest $request)
+    {
         if ($request->repeat == 0) {
             $repeat = 0;
             $repeat_count = 0;
             $repeat_done = 0;
-        }
-        else {
+        } else {
             $repeat = 1;
             $repeat_count = $request->repeat_count + 0;
             $repeat_done = 0;
         }
-        $ca = Programs::where('id', $request->program)->first();
-        $category_id = Category::where('code', $ca->category)->first();
+        $ca = Programs::where("id", $request->program)->first();
+        $category_id = Category::where("code", $ca->category)->first();
         $act = new Actions();
         $act->program_id = $request->program;
         $act->categories_id = $category_id->id;
         $act->name = $request->title;
-        $act->description = $request->description . '';
-        $act->delivery = '';
+        $act->description = $request->description . "";
+        $act->delivery = "";
         $act->dead_line = $request->date;
         $act->done = 0;
         $act->repeat = $repeat;
         $act->repeat_count = $repeat_count;
         $act->repeat_done = $repeat_done;
-        $act->obst = '';
+        $act->obst = "";
         $act->save();
-        return back()->with('success', 'افزودن اقدام با موفقیت انجام شد !');
-
-
+        return back()->with("success", "افزودن اقدام با موفقیت انجام شد !");
     }
 
     /**
@@ -131,7 +145,8 @@ class SubmitController extends Controller {
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         //
     }
 
@@ -141,11 +156,12 @@ class SubmitController extends Controller {
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         $category = Programs::all();
-        $data = Actions::where('id', $id)->first();
-        $files = Uploads::where('action_id', $id)->get();
-        return view('admin/submit/edit', compact('category', 'data', 'files'));
+        $data = Actions::where("id", $id)->first();
+        $files = Uploads::where("action_id", $id)->get();
+        return view("admin/submit/edit", compact("category", "data", "files"));
     }
 
     /**
@@ -155,11 +171,11 @@ class SubmitController extends Controller {
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditActionRequest $request, $id) {
+    public function update(EditActionRequest $request, $id)
+    {
         if (request()->done == 1) {
             $delivery = $request->delivery;
-        }
-        else {
+        } else {
             $delivery = 0;
         }
         $repeat = $request->repeat;
@@ -172,44 +188,41 @@ class SubmitController extends Controller {
             $done = $request->repeat_done;
         }
 
-        $act = Actions::where('id', $id)->first();
+        $act = Actions::where("id", $id)->first();
         if ($act->done == 1) {
             $delivery = $act->delivery;
             $admin = $act->admin_id;
             $user = $act->user_id;
             $manager = $act->manager_id;
         }
-        if (session('level') == 2) {
+        if (session("level") == 2) {
             $manager = auth()->id();
-        }
-        elseif (session('level') == 3) {
+        } elseif (session("level") == 3) {
             $admin = auth()->id();
-        }
-        elseif (session('level') == 4) {
+        } elseif (session("level") == 4) {
             $user = auth()->id();
         }
-        if ($request->done==0) {
+        if ($request->done == 0) {
             $admin = 0;
             $user = 0;
             $manager = 0;
         }
         $act->update([
-            'program_id'   => $request->program,
-            'name'         => $request->title,
-            'description'  => $request->description . '',
-            'done'         => $request->done,
-            'delivery'     => $delivery,
-            'repeat'       => $repeat,
-            'repeat_count' => $count,
-            'repeat_done'  => $done,
-            'dead_line'    => $request->date,
-            'admin_id'     => $admin,
-            'manager_id'   => $manager,
-            'user_id'      => $user,
-            'obst'         => $request->obst . '',
-
+            "program_id" => $request->program,
+            "name" => $request->title,
+            "description" => $request->description . "",
+            "done" => $request->done,
+            "delivery" => $delivery,
+            "repeat" => $repeat,
+            "repeat_count" => $count,
+            "repeat_done" => $done,
+            "dead_line" => $request->date,
+            "admin_id" => $admin,
+            "manager_id" => $manager,
+            "user_id" => $user,
+            "obst" => $request->obst . "",
         ]);
-        return back()->with('success', 'اقدام ویرایش شد !');
+        return back()->with("success", "اقدام ویرایش شد !");
     }
 
     /**
@@ -218,11 +231,13 @@ class SubmitController extends Controller {
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         //
     }
 
-    public function delete() {
-        Actions::findOrFail(request('id'))->delete();
+    public function delete()
+    {
+        Actions::findOrFail(request("id"))->delete();
     }
 }

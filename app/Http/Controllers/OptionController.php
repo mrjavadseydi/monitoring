@@ -13,6 +13,7 @@ class OptionController extends Controller
         $active = Option::where("key", "active_for_edit")->first()->value;
         return view("admin.setting.create", compact("active"));
     }
+
     public function store(Request $request)
     {
         Option::where("key", "active_for_edit")->update([
