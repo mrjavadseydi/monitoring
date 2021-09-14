@@ -114,6 +114,17 @@
                         </select>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>سقف ایده آل</label>
+                        <input type="number" name="ideal" class="form-control" placeholder="3" value="{{$data['ideal']}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>میزان به تحقق رسیده</label>
+                        <input type="number" name="done" class="form-control" placeholder="1" value="{{$data['done']}}">
+                    </div>
+
+                </div>
                 <div class="col-12">
                     <label for="description">توضیحات</label>
                     <textarea id="some-textarea" class="form-control"  DIR="RTL" class="col-md-12" name="description"
