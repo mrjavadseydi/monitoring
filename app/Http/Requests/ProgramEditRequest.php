@@ -24,10 +24,12 @@ class ProgramEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
-            'date'=>'required',
-            'strategy'=>'required',
-            'category'=>'required',
+            "title" => "required",
+            "date" => "required",
+            "strategy" => "required",
+            "category" => "required",
+            "ideal" => "required|numeric",
+            "done" => "required|numeric",
         ];
     }
 }
