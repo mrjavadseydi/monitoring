@@ -52,19 +52,20 @@
 
     <div class="card-header">
         <span class="card-title" style="padding-left: 2%">لیست برنامه ها</span>
+        @if(\Illuminate\Support\Facades\Cache::get('edit')=="1")
+            @if(isset(request()->only))
+                <a href="{{route('program.create')}}?only={{$_GET['only']}}"
+                   class="btn btn-sm btn-outline-info d-inline-block"
+                   style="height: 26px;width: 30px;"><i class="fa fa-plus"></i></a>
+            @elseif(isset(request()->strategy))
+                <a href="{{route('program.create')}}?strategy={{$_GET['strategy']}}"
+                   class="btn btn-sm btn-outline-info d-inline-block"
+                   style="height: 26px;width: 30px;"><i class="fa fa-plus"></i></a>
+            @else
+                <a href="{{route('program.create')}}" class="btn btn-sm btn-outline-info d-inline-block"
+                   style="height: 26px;width: 30px;"><i class="fa fa-plus"></i></a>
 
-        @if(isset(request()->only))
-            <a href="{{route('program.create')}}?only={{$_GET['only']}}"
-               class="btn btn-sm btn-outline-info d-inline-block"
-               style="height: 26px;width: 30px;"><i class="fa fa-plus"></i></a>
-        @elseif(isset(request()->strategy))
-            <a href="{{route('program.create')}}?strategy={{$_GET['strategy']}}"
-               class="btn btn-sm btn-outline-info d-inline-block"
-               style="height: 26px;width: 30px;"><i class="fa fa-plus"></i></a>
-        @else
-            <a href="{{route('program.create')}}" class="btn btn-sm btn-outline-info d-inline-block"
-               style="height: 26px;width: 30px;"><i class="fa fa-plus"></i></a>
-
+            @endif
         @endif
         <div class="card-tools">
 
@@ -159,17 +160,22 @@
                         @endif
                     </td>
                     <td>
-                        <a class="edit" data-toggle="tooltip" data-placement="top" title="ویرایش"
-                           href="{{route('program.edit',$d['id'])}}"><i style="font-size: 20px;"
-                                                                        class="fa fa-edit"></i></a>
+                        @if(\Illuminate\Support\Facades\Cache::get('edit')=="1")
+
+                            <a class="edit" data-toggle="tooltip" data-placement="top" title="ویرایش"
+                               href="{{route('program.edit',$d['id'])}}"><i style="font-size: 20px;"
+                                                                            class="fa fa-edit"></i></a>
+                        @endif
                         <a data-toggle="tooltip" data-placement="top" title="نمایش اقدامات این برنامه "
                            href="{{route('action.index')}}?only={{$d['id']}}"><i style="font-size: 20px;"
                                                                                  class="fa fa-check-square-o"></i></a>
+                        @if(\Illuminate\Support\Facades\Cache::get('edit')=="1")
 
-                        @if(session('level')<2)
-                            <a data-toggle="tooltip" data-placement="top" title="حذف این مورد !" href="#"
-                               style="color: red;" class="trashbtn" data-id="{{$d['id']}}"><i
-                                    style="font-size: 20px" class="fa fa-trash"></i></a>
+                            @if(session('level')<2)
+                                <a data-toggle="tooltip" data-placement="top" title="حذف این مورد !" href="#"
+                                   style="color: red;" class="trashbtn" data-id="{{$d['id']}}"><i
+                                        style="font-size: 20px" class="fa fa-trash"></i></a>
+                            @endif
                         @endif
                     </td>
                 </tr>

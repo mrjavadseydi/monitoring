@@ -131,8 +131,11 @@
                         @endif
                     </td>
                     <td>
+                        @if(\Illuminate\Support\Facades\Cache::get('edit')=="1")
+
                         <a class="edit" data-toggle="tooltip" data-placement="top" title="تایید"
                            href="{{route('submit.edit',$d['id'])}}"><i style="font-size: 20px;" class="fa fa-edit"></i></a>
+                            @endif
                     </td>
                 </tr>
             @endforeach

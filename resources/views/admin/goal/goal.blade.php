@@ -21,9 +21,11 @@
 
     <div class="card-header">
         <span class="card-title" style="padding-left: 2%">لیست اهداف</span>
+        @if(\Illuminate\Support\Facades\Cache::get('edit')=="1")
+
         <a href="{{route('goal.create')}}" class="btn btn-sm btn-outline-info d-inline-block"
            style="height: 26px;width: 30px;"><i class="fa fa-plus"></i></a>
-
+@endif
         <div class="card-tools">
 
 

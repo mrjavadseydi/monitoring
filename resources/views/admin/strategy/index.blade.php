@@ -58,13 +58,16 @@
 @section('main')
     <div class="card-header">
         <span class="card-title" style="padding-left: 2%">لیست راهبرد ها</span>
-        @if(isset($_GET['only']))
-            <a href="{{route('strategy.create')}}?only={{$_GET['only']}}"
-               class="btn btn-sm btn-outline-info d-inline-block"
-               style="height: 26px;width: 30px;"><i class="fa fa-plus"></i></a>
-        @else
-            <a href="{{route('strategy.create')}}" class="btn btn-sm btn-outline-info d-inline-block"
-               style="height: 26px;width: 30px;"><i class="fa fa-plus"></i></a>
+        @if(\Illuminate\Support\Facades\Cache::get('edit')=="1")
+
+            @if(isset($_GET['only']))
+                <a href="{{route('strategy.create')}}?only={{$_GET['only']}}"
+                   class="btn btn-sm btn-outline-info d-inline-block"
+                   style="height: 26px;width: 30px;"><i class="fa fa-plus"></i></a>
+            @else
+                <a href="{{route('strategy.create')}}" class="btn btn-sm btn-outline-info d-inline-block"
+                   style="height: 26px;width: 30px;"><i class="fa fa-plus"></i></a>
+            @endif
         @endif
         <div class="card-tools">
 
@@ -128,29 +131,35 @@
                     <td>{{$arr[$n++]}}</td>
                     @if(session('level')==1)
                         <td>
-                           {{$program[$p]}}
+                            {{$program[$p]}}
                         </td>
                         <td>
-                        {{$act1[$p]}}
+                            {{$act1[$p]}}
                         </td>
                         <td>
-                        {{$dact[$p]}}
+                            {{$dact[$p]}}
                         </td>
                         <td>
-                          {{ceil($percent[$p++]).'%'}}
+                            {{ceil($percent[$p++]).'%'}}
                         </td>
                     @endif
                     <td>
+                        @if(\Illuminate\Support\Facades\Cache::get('edit')=="1")
+
                         <a class="edit" data-toggle="tooltip" data-placement="top" title="ویرایش"
                            href="{{route('strategy.edit',$d['id'])}}"><i style="font-size: 20px;"
                                                                          class="fa fa-edit"></i></a>
+                        @endif
                         <a data-toggle="tooltip" data-placement="top" title="نمایش برنامه های این راهبرد "
                            href="{{route('program.index')}}?strategy={{$d['id']}}"><i style="font-size: 20px;"
                                                                                       class="fa fa-book"></i></a>
-                        <a data-toggle="tooltip" data-placement="top" title="حذف این مورد !" href="#"
+
+                            @if(\Illuminate\Support\Facades\Cache::get('edit')=="1")
+
+                            <a data-toggle="tooltip" data-placement="top" title="حذف این مورد !" href="#"
                            style="color: red;" class="trashbtn" data-id="{{$d['id']}}"><i style="font-size: 20px"
                                                                                           class="fa fa-trash"></i></a>
-
+                            @endif
                     </td>
                 </tr>
 

@@ -6,10 +6,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
         @if(session('level')<2)
-        پنل مدیریت
+            پنل مدیریت
         @else
-        پنل کاربری
-            @endif
+            پنل کاربری
+        @endif
     </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,82 +46,97 @@
 
     <link rel="stylesheet" href="{{asset('dist/css/persian-datepicker.min.css')}}">
 
-    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"   />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 
-    <link rel="stylesheet"href="{{asset('plugins/select2theme/bootstrap.select2.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/select2theme/bootstrap.select2.css')}}">
 
     <link rel="icon" type="image/png" href="{{asset('loginAsset/images/icons/favicon.ico')}}"/>
-    <link rel="stylesheet"href="{{asset('plugins/newdatatable/datatables.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/newdatatable/datatables.css')}}">
 
 
     <style>
-        .paging{
-            float:left;
+        .paging {
+            float: left;
         }
-        .table td{
-            border-top:0!important;
+
+        .table td {
+            border-top: 0 !important;
         }
-        #some-textarea{
+
+        #some-textarea {
             border: 1px solid #ced4da;
-            border-radius:3px ;
+            border-radius: 3px;
             outline: none;
         }
-        #some-textarea:focus{
+
+        #some-textarea:focus {
             border: 2px solid #c1c4c7;
-            border-radius:3px ;
+            border-radius: 3px;
             outline: none;
         }
-        .some-textarea{
+
+        .some-textarea {
             border: 1px solid #ced4da;
-            border-radius:3px ;
+            border-radius: 3px;
             outline: none;
         }
-        .some-textarea:focus{
+
+        .some-textarea:focus {
             border: 2px solid #c1c4c7;
-            border-radius:3px ;
+            border-radius: 3px;
             outline: none;
         }
-        .inike-mojtabagoft{
+
+        .inike-mojtabagoft {
             font-weight: bold;
-            line-height:33px;
+            line-height: 33px;
         }
-        .edit{
+
+        .edit {
             color: #ff8f00;
         }
-        .look{
-            color :#43a047;
+
+        .look {
+            color: #43a047;
         }
-        .file-in{
+
+        .file-in {
             background: #eaeaea;
             padding: 4px;
 
         }
-        .action-up{
+
+        .action-up {
             position: relative;
             top: 7px;
             color: #fffcf7;
             padding: 5px;
             background: #d48534;
             border-radius: 5px;
-            box-shadow: -8px 6px 10px 1px rgba(212,133,52,0.31);
+            box-shadow: -8px 6px 10px 1px rgba(212, 133, 52, 0.31);
             cursor: pointer;
         }
-        .bootstrap-wysihtml5-insert-image-modal .modal-dialog{
-            z-index:3002!important;
+
+        .bootstrap-wysihtml5-insert-image-modal .modal-dialog {
+            z-index: 3002 !important;
         }
+
         .modal-backdrop {
-            z-index: 3001!important;
+            z-index: 3001 !important;
         }
-        .modal{
-            top:60px;
+
+        .modal {
+            top: 60px;
         }
-        .modal-backdrop{
+
+        .modal-backdrop {
             display: none;
         }
 
-        .btn-group{
+        .btn-group {
             padding: 10px;
         }
+
         .btn-group > button {
             border-radius: 5px !important;
             margin-left: 2px !important;
@@ -140,16 +155,18 @@
             margin: 0 3px;
             float: left;
         }
-        #myTable_filter{
+
+        #myTable_filter {
             float: left;
             display: inline-block;
             padding: 10px;
         }
-        #myTable_wrapper{
+
+        #myTable_wrapper {
             overflow: hidden;
         }
 
-        #akbari{
+        #akbari {
             position: fixed;
             background: white;
             top: 0;
@@ -158,6 +175,7 @@
             bottom: 0;
             z-index: 9999999;
         }
+
         #preloader {
             z-index: 100000;
             position: relative !important;
@@ -331,7 +349,8 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview">
@@ -376,51 +395,51 @@
                             </a>
                         </li>
 
-{{--                        <li class="nav-item has-treeview">--}}
-{{--                            <a href="#" class="nav-link">--}}
-{{--                                <i class="nav-icon fa fa-tree"></i>--}}
-{{--                                <p>--}}
-{{--                                    مدیریت برنامه ها--}}
-{{--                                    <i class="fa fa-angle-left right"></i>--}}
-{{--                                </p>--}}
-{{--                            </a>--}}
-{{--                            <ul class="nav nav-treeview">--}}
+                        {{--                        <li class="nav-item has-treeview">--}}
+                        {{--                            <a href="#" class="nav-link">--}}
+                        {{--                                <i class="nav-icon fa fa-tree"></i>--}}
+                        {{--                                <p>--}}
+                        {{--                                    مدیریت برنامه ها--}}
+                        {{--                                    <i class="fa fa-angle-left right"></i>--}}
+                        {{--                                </p>--}}
+                        {{--                            </a>--}}
+                        {{--                            <ul class="nav nav-treeview">--}}
 
 
-                                <li class="nav-item">
-                                    <a href="{{route('goal.index')}}" class="nav-link">
-                                        <i class="fa fa-bullseye nav-icon"></i>
-                                        <p>هدف ها</p>
-                                    </a>
-                                </li>
+                        <li class="nav-item">
+                            <a href="{{route('goal.index')}}" class="nav-link">
+                                <i class="fa fa-bullseye nav-icon"></i>
+                                <p>هدف ها</p>
+                            </a>
+                        </li>
                         @if(session('level')<2)
-                                <li class="nav-item">
-                                    <a href="{{route('category.index')}}" class="nav-link">
-                                        <i class="fa fa-superpowers nav-icon"></i>
-                                        <p>طبقه  ها</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a href="{{route('category.index')}}" class="nav-link">
+                                    <i class="fa fa-superpowers nav-icon"></i>
+                                    <p>طبقه ها</p>
+                                </a>
+                            </li>
                         @endif
 
-                                <li class="nav-item">
-                                    <a href="{{route('strategy.index')}}" class="nav-link">
-                                        <i class="fa fa-adjust nav-icon"></i>
-                                        <p>راهبرد ها</p>
-                                    </a>
-                                </li>
+                        <li class="nav-item">
+                            <a href="{{route('strategy.index')}}" class="nav-link">
+                                <i class="fa fa-adjust nav-icon"></i>
+                                <p>راهبرد ها</p>
+                            </a>
+                        </li>
 
-                                <li class="nav-item">
-                                    <a href="{{route('program.index')}}" class="nav-link">
-                                        <i class="fa fa-book nav-icon"></i>
-                                        <p>برنامه ها</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{route('action.index')}}" class="nav-link">
-                                        <i class="fa fa-check-square-o nav-icon"></i>
-                                        <p>اقدامات</p>
-                                    </a>
-                                </li>
+                        <li class="nav-item">
+                            <a href="{{route('program.index')}}" class="nav-link">
+                                <i class="fa fa-book nav-icon"></i>
+                                <p>برنامه ها</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('action.index')}}" class="nav-link">
+                                <i class="fa fa-check-square-o nav-icon"></i>
+                                <p>اقدامات</p>
+                            </a>
+                        </li>
                         @if(session('level')!=4)
 
                             <li class="nav-item">
@@ -430,23 +449,29 @@
                                 </a>
                             </li>
                         @endif
-                        @if(session('level')<2)
-                        <li class="nav-item">
-                            <a href="{{route('report.index')}}" class="nav-link">
-                                <i class="nav-icon fa fa-pie-chart"></i>
-                                <p>گزارشات</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('user.index')}}" class="nav-link">
-                                <i class="nav-icon fa fa-user-circle"></i>
-                                <p>کاربران</p>
-                            </a>
-                        </li>
+                        @if(session('level')==1)
+                            <li class="nav-item">
+                                <a href="{{route('report.index')}}" class="nav-link">
+                                    <i class="nav-icon fa fa-pie-chart"></i>
+                                    <p>گزارشات</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('user.index')}}" class="nav-link">
+                                    <i class="nav-icon fa fa-user-circle"></i>
+                                    <p>کاربران</p>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a href="{{route('problemType.index')}}" class="nav-link">
                                     <i class="nav-icon fa fa-gittip"></i>
                                     <p>نوع موانع </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('settings')}}" class="nav-link">
+                                    <i class="nav-icon fa fa-wrench"></i>
+                                    <p>تنظیمات </p>
                                 </a>
                             </li>
                         @endif
@@ -482,15 +507,15 @@
                     <!-- Default box -->
                     <div class="card animate__animated animate__zoomInDown">
 
-                        @yield('top_main')
-                        <!-- /.card-body -->
+                    @yield('top_main')
+                    <!-- /.card-body -->
 
                         <!-- /.card-footer-->
                     </div>
                     <div class="card animate__animated animate__zoomInDown">
 
-                        @yield('main')
-                        <!-- /.card-body -->
+                    @yield('main')
+                    <!-- /.card-body -->
 
                         <!-- /.card-footer-->
                     </div>

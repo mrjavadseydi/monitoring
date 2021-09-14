@@ -16,28 +16,30 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-
-        $level=4;
-        if (Auth::user()->roles->pluck('name')->count()==0){
-            $level=4;
-            session(['level'=>$level]);
+        $level = 4;
+        if (
+            Auth::user()
+                ->roles->pluck("name")
+                ->count() == 0
+        ) {
+            session(["level" => $level]);
             return $next($request);
         }
-        switch (Auth::user()->roles->pluck('name')[0]){
-            case 'مدیر اصلی':
+        switch (Auth::user()->roles->pluck("name")[0]) {
+            case "مدیر اصلی":
                 $level = 1;
                 break;
-            case 'ناظر':
+            case "ناظر":
                 $level = 2;
                 break;
-            case 'مدیر طبقه':
+            case "مدیر طبقه":
                 $level = 3;
                 break;
-            case 'کارشناس':
+            case "کارشناس":
                 $level = 4;
                 break;
         }
-        session(['level'=>$level]);
+        session(["level" => $level]);
         return $next($request);
     }
 }

@@ -28,8 +28,6 @@ class ProgramEditRequest extends FormRequest
             "date" => "required",
             "strategy" => "required",
             "category" => "required",
-            "ideal" => "required|numeric",
-            "done" => "required|numeric",
         ];
     }
 }

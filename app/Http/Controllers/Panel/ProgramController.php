@@ -9,6 +9,7 @@ use App\Models\Actions;
 use App\Models\Category;
 use App\Models\Plan;
 use App\Models\Programs;
+use App\Models\ProgressHistory;
 use App\Models\Strategies;
 use App\Models\UserCategory;
 
@@ -73,7 +74,7 @@ class ProgramController extends Controller
             array_push($done, $b);
         }
         return view(
-            "admin/program/index",
+            "admin.program.index",
             compact("data", "done", "all", "stra", "plan")
         );
     }
@@ -147,7 +148,7 @@ class ProgramController extends Controller
         } else {
             $category = Category::all();
         }
-        return view("admin/program/create", compact("strategy", "category"));
+        return view("admin.program.create", compact("strategy", "category"));
     }
 
     /**
@@ -206,7 +207,7 @@ class ProgramController extends Controller
         $data = Programs::where("id", $id)->first();
         $stra = Strategies::all();
         $cate = Category::all();
-        return view("admin/program/edit", compact("data", "stra", "cate"));
+        return view("admin.program.edit", compact("data", "stra", "cate"));
     }
 
     /**
@@ -225,6 +226,14 @@ class ProgramController extends Controller
         ])->count();
         $row++;
         $up = Programs::findOrFail($id);
+        if ($up->done != $request->done) {
+            ProgressHistory::create([
+                "program_id" => $id,
+                "user_id" => \Auth::id(),
+                "before" => $up->done,
+                "after" => $request->done,
+            ]);
+        }
         $up->update([
             "strategy" => $request->strategy,
             "name" => $request->title,
