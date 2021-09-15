@@ -17,12 +17,12 @@ class panelController extends Controller
     public function panel()
     {
         $now = Jalalian::forge("today")->format("%Y");
-        $d = Plan::all();
-        foreach ($d as $r) {
-            $r->update([
-                "now" => $now,
-            ]);
-        }
+        //        $d = Plan::all();
+        //        foreach ($d as $r) {
+        //            $r->update([
+        //                "now" => $now,
+        //            ]);
+        //        }
         return view("admin/index");
     }
 

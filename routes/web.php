@@ -91,6 +91,20 @@ Route::prefix("AdminPanel")
             \App\Http\Controllers\OptionController::class,
             "store",
         ]);
+        Route::get("/TotalReport", [
+            \App\Http\Controllers\Panel\ReportController::class,
+            "indexReport",
+        ])->name("total.index");
+
+        Route::get("/TotalReport/save", [
+            \App\Http\Controllers\Panel\ReportController::class,
+            "CreateReportView",
+        ])->name("total.report");
+
+        Route::post("/TotalReport/save", [
+            \App\Http\Controllers\Panel\ReportController::class,
+            "CustomReport",
+        ]);
     });
 Route::prefix("userPanel")
     ->middleware(["auth"])

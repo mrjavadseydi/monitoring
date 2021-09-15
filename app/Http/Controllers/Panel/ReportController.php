@@ -7,7 +7,10 @@ use App\Models\Actions;
 use App\Models\Category;
 use App\Models\Programs;
 use App\Models\Strategies;
+use App\Models\TotalReport;
+use Facade\FlareClient\Truncation\ReportTrimmer;
 use Illuminate\Http\Request;
+use Morilog\Jalali\Jalalian;
 
 class ReportController extends Controller
 {
@@ -102,8 +105,45 @@ class ReportController extends Controller
             compact("data", "program", "stra", "act", "dact", "percent")
         );
     }
-
+    public function indexReport()
+    {
+        $data = TotalReport::all();
+        return view("admin.report.index", compact("data"));
+    }
+    public function CreateReportView()
+    {
+        return view("admin.report.create");
+    }
     public function CustomReport(Request $request)
     {
+        $plan_id = session("plan");
+        $ideal = Programs::where([
+            ["plan_id", $plan_id],
+            ["category", $request->category],
+        ])->sum("ideal");
+        $done = Programs::where([
+            ["plan_id", $plan_id],
+            ["category", $request->category],
+        ])->sum("done");
+        if (
+            ($done == 0) |
+            ($ideal == 0) |
+            ($request->c == 0) |
+            ($request->h == 0)
+        ) {
+            return back()->with("danger", "امکان محاسبه وجود ندارد");
+        }
+        $A = ($done * 100) / $ideal;
+        $A1 = $A / $request->h;
+        $A2 = $A / $request->c;
+        $R = ($A1 + $A2) / 2;
+        TotalReport::create([
+            "category_id" => Category::whereCode($request->category)->first()
+                ->id,
+            "result" => $R,
+            "year" => Jalalian::forge("today")->format("%Y"),
+            "h_value" => $request->h,
+            "c_value" => $request->c,
+        ]);
     }
 }

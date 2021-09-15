@@ -457,6 +457,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{route('total.report')}}" class="nav-link">
+                                    <i class="nav-icon fa fa-pie-chart"></i>
+                                    <p>گزارش سالانه </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{route('user.index')}}" class="nav-link">
                                     <i class="nav-icon fa fa-user-circle"></i>
                                     <p>کاربران</p>
@@ -474,6 +480,9 @@
                                     <p>تنظیمات </p>
                                 </a>
                             </li>
+
+
+
                         @endif
 
                     </ul>
